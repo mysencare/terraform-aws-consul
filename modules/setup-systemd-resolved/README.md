@@ -13,6 +13,7 @@ This script has been tested on the following operating systems:
 * Ubuntu 18.04
 * Ubuntu 20.04
 * Ubuntu 22.04
+* Ubuntu 24.04
 
 ## Quick start
 

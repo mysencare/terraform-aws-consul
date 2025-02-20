@@ -3,8 +3,9 @@
 # with the following operating systems:
 #
 # 1. Ubuntu 18.04
-# 1. Ubuntu 20.04
-# 1. Ubuntu 22.04
+# 2. Ubuntu 20.04
+# 3. Ubuntu 22.04
+# 4. Ubuntu 24.04
 # See https://learn.hashicorp.com/consul/security-networking/forwarding#systemd-resolved-setup for more details
 # Github Issue: https://github.com/hashicorp/consul/issues/4155
 
@@ -84,7 +85,7 @@ function configure_systemd_resolved {
   local -r consul_port="$3"
 
   UBUNTU_VERSION=`lsb_release -s -r`
-  if [ "$UBUNTU_VERSION" == "18.04" ] || [ "$UBUNTU_VERSION" == "20.04" ] || [ "$UBUNTU_VERSION" == "22.04" ]; then
+  if [ "$UBUNTU_VERSION" == "18.04" ] || [ "$UBUNTU_VERSION" == "20.04" ] || [ "$UBUNTU_VERSION" == "22.04" ] || [ "$UBUNTU_VERSION" == "24.04" ]; then
     log_info "Configuring systemd-resolved to forward lookups of the '$consul_domain' domain to $consul_ip:$consul_port in $CONSUL_DNS_MASQ_CONFIG_FILE"
 
     sudo iptables -t nat -A OUTPUT -d localhost -p udp -m udp --dport 53 -j REDIRECT --to-ports $consul_port
